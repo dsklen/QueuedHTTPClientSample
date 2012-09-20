@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 ELC Technologies. All rights reserved.
 //
 
+/*
+ * View controller to fetch and display twitter results for search tags.
+ */
+
 #import <UIKit/UIKit.h>
 
 @interface TweetsViewController : UITableViewController

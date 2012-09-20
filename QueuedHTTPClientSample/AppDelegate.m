@@ -16,9 +16,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Register default search tags for initial launch.
+    
     NSDictionary *appDefaults = [NSDictionary
                                  dictionaryWithObject:[NSArray arrayWithObjects:@"Portland", @"Oregon", @"Timbers", @"Burnside", @"Powell's", @"Willamette", nil]  forKey:@"SearchTagsKey"];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+    
+    // Set application root view controller.
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

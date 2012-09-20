@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 ELC Technologies. All rights reserved.
 //
 
+/*
+ * Lightweight data object for storing fetched tweets.
+ */
+
 #import <Foundation/Foundation.h>
 
 @interface Tweet : NSObject

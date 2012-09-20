@@ -151,9 +151,7 @@
         if ( buttonIndex == 1 ) 
         {
             UITextField *textField = [alertView textFieldAtIndex:0];
-            
             [self addTag:textField.text];
-            
             [self reloadTags];
         }
     }
@@ -162,9 +160,7 @@
         if ( buttonIndex == 1 ) 
         {
             UITextField *textField = [alertView textFieldAtIndex:0];
-            
             [self editTagAtIndex:alertView.tag - EDIT_ALERT_TAG newTag:textField.text];
-            
             [self reloadTags];
         }
     }
@@ -209,19 +205,10 @@
     if ( editingStyle == UITableViewCellEditingStyleDelete ) 
     {
         [self removeTag:[self.searchTags objectAtIndex:indexPath.row]];
-
         [self.searchTags removeObjectAtIndex:indexPath.row];
-        
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
 
 #pragma mark - UITableViewDelegate

@@ -23,7 +23,6 @@
 @synthesize tweets = _tweets;
 
 
-
 #pragma mark - View lifecycle
 
 - (id)initWithTags:(NSArray *)tags;
@@ -96,14 +95,16 @@
         authorLabel.textColor = [UIColor blackColor];
         [cell.contentView addSubview:authorLabel];
         
-        UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake( 15.0f, 30.0f, 300.0f, 300.0f )];
+        UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake( 10.0f, 35.0f, 300.0f, 300.0f )];
         tweetLabel.tag = 2;
         tweetLabel.font = [UIFont boldSystemFontOfSize:12.0f];
         tweetLabel.textColor = [UIColor darkGrayColor];
         [cell.contentView addSubview:tweetLabel];
     }
     
-    Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:YES]]] objectAtIndex:indexPath.row];
+    NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:YES]];
+    
+    Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:sortDescriptorsArray] objectAtIndex:indexPath.row];
     
     [(UILabel *)[cell.contentView viewWithTag:1] setText:tweet.screenNameString];
     
@@ -111,6 +112,8 @@
     [tweetLabel setText:tweet.tweetTextString];
     [tweetLabel setNumberOfLines:0];
 
+    // Calculate label size based on tweet length.
+    
     CGSize maxLabelSize = CGSizeMake( 300.0f, 9999.0f );;    
     CGSize labelSize = [tweet.tweetTextString sizeWithFont:tweetLabel.font 
                                     constrainedToSize:maxLabelSize 
@@ -128,6 +131,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+    // Calculate label size based on tweet length.
     
     Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:YES]]] objectAtIndex:indexPath.row];
     NSString *string = tweet.tweetTextString;

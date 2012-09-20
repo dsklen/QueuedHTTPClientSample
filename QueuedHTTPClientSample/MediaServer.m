@@ -37,21 +37,21 @@
 {
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         
+        NSMutableArray *tweetObjects = [[NSMutableArray alloc] init];
         NSError *error = nil;
-        
+        NSHTTPURLResponse *response = nil;
+
         NSString *encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
         NSString *URLString = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@&rpp=100&include_entities=true&result_type=mixed", encodedSearchString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:DEFAULT_TIMEOUT];
-        NSHTTPURLResponse *response = nil;
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         NSArray *tweets = [JSON objectForKey:@"results"];
-
-        NSMutableArray *tweetObjects = [[NSMutableArray alloc] init];
         
-        for (NSDictionary *tweetDictionary in tweets)
+        // Serialize JSON response into lightweight Tweet objects for convenience.
+        
+        for ( NSDictionary *tweetDictionary in tweets )
         {
             Tweet *tweet = [[Tweet alloc] initWithJSON:tweetDictionary];
             [tweetObjects addObject:tweet];

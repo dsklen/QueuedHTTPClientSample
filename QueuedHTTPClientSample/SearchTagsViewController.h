@@ -6,6 +6,11 @@
 //  Copyright (c) 2012 ELC Technologies. All rights reserved.
 //
 
+/*
+ * View controller to display and manage a set of search tags to use
+ * for querying Twitter with MediaServer.
+ */
+
 #import <UIKit/UIKit.h>
 
 @interface SearchTagsViewController : UITableViewController <UIAlertViewDelegate>
