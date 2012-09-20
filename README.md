@@ -2,7 +2,6 @@ QueuedHTTPClientSample
 ======================
 
 iCodeBlog.com Sample Code
-----------------------
 
 Demonstrates an asynchronous HTTP client using NSOperationQueue.
 
