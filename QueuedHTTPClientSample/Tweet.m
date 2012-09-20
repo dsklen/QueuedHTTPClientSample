@@ -22,7 +22,7 @@
         self.screenNameString = [JSONObject objectForKey:@"from_user"];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
+        [dateFormatter setDateFormat:@"EEE, d LLL yyyy HH:mm:ss Z"];
         self.createdAtDate = [dateFormatter dateFromString:[JSONObject objectForKey:@"created_at"]];
         
         self.tweetTextString = [JSONObject objectForKey:@"text"];

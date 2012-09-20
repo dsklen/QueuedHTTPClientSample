@@ -93,6 +93,7 @@
         authorLabel.tag = 1;
         authorLabel.font = [UIFont boldSystemFontOfSize:12.0f];
         authorLabel.textColor = [UIColor blackColor];
+        authorLabel.backgroundColor = [UIColor clearColor];
         [cell.contentView addSubview:authorLabel];
         
         UILabel *tweetLabel = [[UILabel alloc] initWithFrame:CGRectMake( 10.0f, 35.0f, 300.0f, 300.0f )];
@@ -100,10 +101,16 @@
         tweetLabel.font = [UIFont boldSystemFontOfSize:12.0f];
         tweetLabel.textColor = [UIColor darkGrayColor];
         [cell.contentView addSubview:tweetLabel];
+        
+        UILabel *tweetTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake( 230.0f, 10.0f, 80.0f, 20.0f )];
+        tweetTimeLabel.tag = 3;
+        tweetTimeLabel.textAlignment = UITextAlignmentRight;
+        tweetTimeLabel.font = [UIFont boldSystemFontOfSize:10.0f];
+        tweetTimeLabel.textColor = [UIColor lightGrayColor];
+        [cell.contentView addSubview:tweetTimeLabel];
     }
     
-    NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:YES]];
-    
+    NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:NO]];
     Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:sortDescriptorsArray] objectAtIndex:indexPath.row];
     
     [(UILabel *)[cell.contentView viewWithTag:1] setText:tweet.screenNameString];
@@ -112,9 +119,9 @@
     [tweetLabel setText:tweet.tweetTextString];
     [tweetLabel setNumberOfLines:0];
 
-    // Calculate label size based on tweet length.
+    // Calculate tweet label size based on tweet length.
     
-    CGSize maxLabelSize = CGSizeMake( 300.0f, 9999.0f );;    
+    CGSize maxLabelSize = CGSizeMake( tweetLabel.frame.size.width, 9999.0f );;    
     CGSize labelSize = [tweet.tweetTextString sizeWithFont:tweetLabel.font 
                                     constrainedToSize:maxLabelSize 
                                         lineBreakMode:tweetLabel.lineBreakMode]; 
@@ -122,6 +129,16 @@
     CGRect newScreenNameFrame = tweetLabel.frame;
     newScreenNameFrame.size.height = labelSize.height;
     tweetLabel.frame = newScreenNameFrame;
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];    
+    [dateFormatter setDoesRelativeDateFormatting:YES];
+    
+    NSString *dateString = [dateFormatter stringFromDate:tweet.createdAtDate];
+    
+    [(UILabel *)[cell.contentView viewWithTag:3] setText:dateString];
     
     return cell;
 }
@@ -133,7 +150,9 @@
 {
     // Calculate label size based on tweet length.
     
-    Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:YES]]] objectAtIndex:indexPath.row];
+    NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:NO]];
+    Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:sortDescriptorsArray] objectAtIndex:indexPath.row];
+
     NSString *string = tweet.tweetTextString;
     CGSize maximumLabelSize = CGSizeMake( 300.0f, 9999.0f );
     CGSize expectedLabelSize = [string sizeWithFont:[UIFont boldSystemFontOfSize:12.0f] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap]; 
