@@ -13,8 +13,10 @@
 		B60017A715E2F5620076550D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B60017A515E2F5620076550D /* InfoPlist.strings */; };
 		B60017A915E2F5620076550D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017A815E2F5620076550D /* main.m */; };
 		B60017AD15E2F5620076550D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017AC15E2F5620076550D /* AppDelegate.m */; };
-		B60017B015E2F5620076550D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017AF15E2F5620076550D /* ViewController.m */; };
-		B60017B315E2F5620076550D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60017B115E2F5620076550D /* ViewController.xib */; };
+		B60017BB15E2F5BE0076550D /* MediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017BA15E2F5BE0076550D /* MediaServer.m */; };
+		B6702F3E160294A80039D635 /* SearchTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6702F3D160294A80039D635 /* SearchTagsViewController.m */; };
+		B6702F421602A39B0039D635 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6702F411602A39B0039D635 /* TweetsViewController.m */; };
+		B6702F451602A6EE0039D635 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = B6702F441602A6EE0039D635 /* Tweet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +24,20 @@
 		B600179C15E2F5620076550D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B600179E15E2F5620076550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B60017A015E2F5620076550D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B60017A415E2F5620076550D /* QueuedHTTPClientSample-Info.plist */ = {isa = PBXFileReference; path = "QueuedHTTPClientSample-Info.plist"; sourceTree = "<group>"; };
+		B60017A415E2F5620076550D /* QueuedHTTPClientSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QueuedHTTPClientSample-Info.plist"; sourceTree = "<group>"; };
 		B60017A615E2F5620076550D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B60017A815E2F5620076550D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B60017AA15E2F5620076550D /* QueuedHTTPClientSample-Prefix.pch */ = {isa = PBXFileReference; path = "QueuedHTTPClientSample-Prefix.pch"; sourceTree = "<group>"; };
-		B60017AB15E2F5620076550D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		B60017AA15E2F5620076550D /* QueuedHTTPClientSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QueuedHTTPClientSample-Prefix.pch"; sourceTree = "<group>"; };
+		B60017AB15E2F5620076550D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B60017AC15E2F5620076550D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B60017AE15E2F5620076550D /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
-		B60017AF15E2F5620076550D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B60017B215E2F5620076550D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		B60017B915E2F5BE0076550D /* MediaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaServer.h; sourceTree = "<group>"; };
+		B60017BA15E2F5BE0076550D /* MediaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaServer.m; sourceTree = "<group>"; };
+		B6702F3C160294A80039D635 /* SearchTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTagsViewController.h; sourceTree = "<group>"; };
+		B6702F3D160294A80039D635 /* SearchTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTagsViewController.m; sourceTree = "<group>"; };
+		B6702F401602A39B0039D635 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
+		B6702F411602A39B0039D635 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
+		B6702F431602A6EE0039D635 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		B6702F441602A6EE0039D635 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +86,14 @@
 			children = (
 				B60017AB15E2F5620076550D /* AppDelegate.h */,
 				B60017AC15E2F5620076550D /* AppDelegate.m */,
-				B60017AE15E2F5620076550D /* ViewController.h */,
-				B60017AF15E2F5620076550D /* ViewController.m */,
-				B60017B115E2F5620076550D /* ViewController.xib */,
+				B6702F3C160294A80039D635 /* SearchTagsViewController.h */,
+				B6702F3D160294A80039D635 /* SearchTagsViewController.m */,
+				B6702F401602A39B0039D635 /* TweetsViewController.h */,
+				B6702F411602A39B0039D635 /* TweetsViewController.m */,
+				B60017B915E2F5BE0076550D /* MediaServer.h */,
+				B60017BA15E2F5BE0076550D /* MediaServer.m */,
+				B6702F431602A6EE0039D635 /* Tweet.h */,
+				B6702F441602A6EE0039D635 /* Tweet.m */,
 				B60017A315E2F5620076550D /* Supporting Files */,
 			);
 			path = QueuedHTTPClientSample;
@@ -150,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B60017A715E2F5620076550D /* InfoPlist.strings in Resources */,
-				B60017B315E2F5620076550D /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +174,10 @@
 			files = (
 				B60017A915E2F5620076550D /* main.m in Sources */,
 				B60017AD15E2F5620076550D /* AppDelegate.m in Sources */,
-				B60017B015E2F5620076550D /* ViewController.m in Sources */,
+				B60017BB15E2F5BE0076550D /* MediaServer.m in Sources */,
+				B6702F3E160294A80039D635 /* SearchTagsViewController.m in Sources */,
+				B6702F421602A39B0039D635 /* TweetsViewController.m in Sources */,
+				B6702F451602A6EE0039D635 /* Tweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,14 +190,6 @@
 				B60017A615E2F5620076550D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B60017B115E2F5620076550D /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B60017B215E2F5620076550D /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -275,6 +281,7 @@
 				B60017B815E2F5620076550D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
