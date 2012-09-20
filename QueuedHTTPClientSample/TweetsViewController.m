@@ -55,9 +55,11 @@
     {
         [server fetchTweetsForSearch:tag block:^(NSArray *items, NSError *error) {
             
-            [self.tweets addObjectsFromArray:items];
-
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            if ( items && error == nil )
+            {
+                [self.tweets addObjectsFromArray:items];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+            }
         }];
     }
 }
