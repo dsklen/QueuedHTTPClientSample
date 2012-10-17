@@ -14,6 +14,8 @@
 		B60017A915E2F5620076550D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017A815E2F5620076550D /* main.m */; };
 		B60017AD15E2F5620076550D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017AC15E2F5620076550D /* AppDelegate.m */; };
 		B60017BB15E2F5BE0076550D /* MediaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B60017BA15E2F5BE0076550D /* MediaServer.m */; };
+		B664947F16276F9F001EABDF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B664947E16276F9F001EABDF /* Constants.m */; };
+		B664957A162E19A2001EABDF /* NSString+EncodeURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B6649579162E19A2001EABDF /* NSString+EncodeURL.m */; };
 		B6702F3E160294A80039D635 /* SearchTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6702F3D160294A80039D635 /* SearchTagsViewController.m */; };
 		B6702F421602A39B0039D635 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6702F411602A39B0039D635 /* TweetsViewController.m */; };
 		B6702F451602A6EE0039D635 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = B6702F441602A6EE0039D635 /* Tweet.m */; };
@@ -32,6 +34,10 @@
 		B60017AC15E2F5620076550D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B60017B915E2F5BE0076550D /* MediaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaServer.h; sourceTree = "<group>"; };
 		B60017BA15E2F5BE0076550D /* MediaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaServer.m; sourceTree = "<group>"; };
+		B664947D16276F9F001EABDF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B664947E16276F9F001EABDF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		B6649578162E19A2001EABDF /* NSString+EncodeURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EncodeURL.h"; sourceTree = "<group>"; };
+		B6649579162E19A2001EABDF /* NSString+EncodeURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EncodeURL.m"; sourceTree = "<group>"; };
 		B6702F3C160294A80039D635 /* SearchTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTagsViewController.h; sourceTree = "<group>"; };
 		B6702F3D160294A80039D635 /* SearchTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTagsViewController.m; sourceTree = "<group>"; };
 		B6702F401602A39B0039D635 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
@@ -84,16 +90,9 @@
 		B60017A215E2F5620076550D /* QueuedHTTPClientSample */ = {
 			isa = PBXGroup;
 			children = (
-				B60017AB15E2F5620076550D /* AppDelegate.h */,
-				B60017AC15E2F5620076550D /* AppDelegate.m */,
-				B6702F3C160294A80039D635 /* SearchTagsViewController.h */,
-				B6702F3D160294A80039D635 /* SearchTagsViewController.m */,
-				B6702F401602A39B0039D635 /* TweetsViewController.h */,
-				B6702F411602A39B0039D635 /* TweetsViewController.m */,
-				B60017B915E2F5BE0076550D /* MediaServer.h */,
-				B60017BA15E2F5BE0076550D /* MediaServer.m */,
-				B6702F431602A6EE0039D635 /* Tweet.h */,
-				B6702F441602A6EE0039D635 /* Tweet.m */,
+				B60BA8D4162F6C730076BA29 /* App Controllers */,
+				B60BA8D5162F6C840076BA29 /* View Controllers */,
+				B60BA8D6162F6CAF0076BA29 /* Model */,
 				B60017A315E2F5620076550D /* Supporting Files */,
 			);
 			path = QueuedHTTPClientSample;
@@ -106,8 +105,67 @@
 				B60017A515E2F5620076550D /* InfoPlist.strings */,
 				B60017A815E2F5620076550D /* main.m */,
 				B60017AA15E2F5620076550D /* QueuedHTTPClientSample-Prefix.pch */,
+				B664947D16276F9F001EABDF /* Constants.h */,
+				B664947E16276F9F001EABDF /* Constants.m */,
+				B60BA8D9162F6CEE0076BA29 /* Categories */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B60BA8D4162F6C730076BA29 /* App Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B60017AB15E2F5620076550D /* AppDelegate.h */,
+				B60017AC15E2F5620076550D /* AppDelegate.m */,
+			);
+			name = "App Controllers";
+			sourceTree = "<group>";
+		};
+		B60BA8D5162F6C840076BA29 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B6702F3C160294A80039D635 /* SearchTagsViewController.h */,
+				B6702F3D160294A80039D635 /* SearchTagsViewController.m */,
+				B6702F401602A39B0039D635 /* TweetsViewController.h */,
+				B6702F411602A39B0039D635 /* TweetsViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B60BA8D6162F6CAF0076BA29 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B60BA8D7162F6CB70076BA29 /* Networking */,
+				B60BA8D8162F6CC90076BA29 /* JSON Data Object */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B60BA8D7162F6CB70076BA29 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B60017B915E2F5BE0076550D /* MediaServer.h */,
+				B60017BA15E2F5BE0076550D /* MediaServer.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		B60BA8D8162F6CC90076BA29 /* JSON Data Object */ = {
+			isa = PBXGroup;
+			children = (
+				B6702F431602A6EE0039D635 /* Tweet.h */,
+				B6702F441602A6EE0039D635 /* Tweet.m */,
+			);
+			name = "JSON Data Object";
+			sourceTree = "<group>";
+		};
+		B60BA8D9162F6CEE0076BA29 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B6649578162E19A2001EABDF /* NSString+EncodeURL.h */,
+				B6649579162E19A2001EABDF /* NSString+EncodeURL.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +236,8 @@
 				B6702F3E160294A80039D635 /* SearchTagsViewController.m in Sources */,
 				B6702F421602A39B0039D635 /* TweetsViewController.m in Sources */,
 				B6702F451602A6EE0039D635 /* Tweet.m in Sources */,
+				B664947F16276F9F001EABDF /* Constants.m in Sources */,
+				B664957A162E19A2001EABDF /* NSString+EncodeURL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

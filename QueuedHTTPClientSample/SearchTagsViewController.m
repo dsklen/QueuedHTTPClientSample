@@ -8,6 +8,7 @@
 
 #import "SearchTagsViewController.h"
 #import "TweetsViewController.h"
+#import "Constants.h"
 
 #define EDIT_ALERT_TAG 4
 
@@ -64,11 +65,11 @@
     {
         NSMutableArray *mutableCurrentTags = [currentTags mutableCopy];
         [mutableCurrentTags addObject:tag];
-        [[NSUserDefaults standardUserDefaults] setObject:[mutableCurrentTags copy] forKey:@"SearchTagsKey"];
+        [[NSUserDefaults standardUserDefaults] setObject:[mutableCurrentTags copy] forKey:TagsDefaultsKey];
     }
     else 
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:tag] forKey:@"SearchTagsKey"];
+    {   
+        [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:tag] forKey:TagsDefaultsKey];
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -76,31 +77,31 @@
 
 - (void)editTagAtIndex:(NSInteger)index newTag:(NSString *)editedTag;
 {
-    NSArray *currentTags = [[NSUserDefaults standardUserDefaults] arrayForKey:@"SearchTagsKey"];
+    NSArray *currentTags = [[NSUserDefaults standardUserDefaults] arrayForKey:TagsDefaultsKey];
     
     NSMutableArray *mutableCurrentTags = [currentTags mutableCopy];
     
     [mutableCurrentTags replaceObjectAtIndex:index withObject:editedTag];
         
-    [[NSUserDefaults standardUserDefaults] setObject:[mutableCurrentTags copy] forKey:@"SearchTagsKey"];
+    [[NSUserDefaults standardUserDefaults] setObject:[mutableCurrentTags copy] forKey:TagsDefaultsKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)removeTag:(NSString *)tag;
 {
-    NSArray *currentTags = [[NSUserDefaults standardUserDefaults] arrayForKey:@"SearchTagsKey"];
+    NSArray *currentTags = [[NSUserDefaults standardUserDefaults] arrayForKey:TagsDefaultsKey];
     
     NSMutableArray *mutableCurrentTags = [currentTags mutableCopy];
     
     [mutableCurrentTags removeObject:tag];
     
-    [[NSUserDefaults standardUserDefaults] setObject:[mutableCurrentTags copy] forKey:@"SearchTagsKey"];
+    [[NSUserDefaults standardUserDefaults] setObject:[mutableCurrentTags copy] forKey:TagsDefaultsKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)reloadTags;
 {
-    self.searchTags = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"SearchTagsKey"] mutableCopy];
+    self.searchTags = [[[NSUserDefaults standardUserDefaults] arrayForKey:TagsDefaultsKey] mutableCopy];
     [self.tableView reloadData];
 }
 
@@ -138,7 +139,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return ( interfaceOrientation == UIInterfaceOrientationPortrait );
 }
 
 

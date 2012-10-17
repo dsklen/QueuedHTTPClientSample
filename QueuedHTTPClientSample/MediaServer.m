@@ -7,9 +7,11 @@
 //
 
 #import "MediaServer.h"
+#import "NSString+EncodeURL.h"
 #import "Tweet.h"
 
-#define DEFAULT_TIMEOUT 120.0
+#define DEFAULT_TIMEOUT 120.0f
+#define SEARCH_RESULTS_PER_TAG 20
 
 @implementation MediaServer
 
@@ -41,9 +43,9 @@
         NSError *error = nil;
         NSHTTPURLResponse *response = nil;
 
-        NSString *encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *URLString = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@&rpp=100&include_entities=true&result_type=mixed", encodedSearchString];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:DEFAULT_TIMEOUT];
+        NSString *encodedSearchString = [searchString stringWithURLEncoding];
+        NSString *URLString = [NSString stringWithFormat:@"http://search.twitter.com/search.json?q=%@&rpp=%i&include_entities=true&result_type=mixed", encodedSearchString, SEARCH_RESULTS_PER_TAG];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:DEFAULT_TIMEOUT];
         NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
@@ -57,13 +59,19 @@
             [tweetObjects addObject:tweet];
         }        
         
-        dispatch_async( dispatch_get_main_queue(), ^{
+        NSLog(@"Search for '%@' returned %i results.", searchString, [tweetObjects count]);
+        
+        // Return to the main queue once the request has been processed.
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
-            if ( error ) 
+            if ( error )
                 block( nil, error );
             else
                 block( tweetObjects, nil );
-        });
+        }];
+        
+
     }];
     
     // Optionally, set the operation priority. This is useful when flooding
@@ -81,7 +89,8 @@
     if ( ( self = [super init] ) )
     {
         // The maxConcurrentOperationCount should reflect the number of open
-        // connections the server can handle. Right now, limit it to two.
+        // connections the server can handle. Right now, limit it to two for
+        // the sake of this example.
         
         _operationQueue = [[NSOperationQueue alloc] init];
         _operationQueue.maxConcurrentOperationCount = 2;

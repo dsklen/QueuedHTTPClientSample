@@ -20,6 +20,7 @@ typedef void (^FetchBlock)(NSArray *items, NSError *error);
 @property (strong) NSOperationQueue *operationQueue;
 
 + (id)sharedMediaServer;
+
 - (void)fetchTweetsForSearch:(NSString *)searchString block:(FetchBlock)block;
 
 @end

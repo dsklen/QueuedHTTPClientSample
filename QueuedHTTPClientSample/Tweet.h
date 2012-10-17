@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSString *screenNameString;
 @property (nonatomic, strong) NSDate *createdAtDate;
+@property (nonatomic, strong) NSString *createdAtString;
 @property (nonatomic, strong) NSString *tweetTextString;
 
 - (id)initWithJSON:(NSDictionary *)JSONObject;

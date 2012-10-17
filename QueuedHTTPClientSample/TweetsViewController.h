@@ -15,7 +15,8 @@
 @interface TweetsViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *tags;
-@property (strong, nonatomic) NSMutableSet *tweets;
+@property (strong, nonatomic) NSMutableArray *tweets;
+@property (strong, nonatomic) UIActivityIndicatorView *activity;
 
 - (id)initWithTags:(NSArray *)tags;
 

@@ -12,14 +12,20 @@
 
 @implementation AppDelegate
 
+
+#pragma mark - Properties
+
 @synthesize window = _window;
+
+
+#pragma mark - Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Register default search tags for initial launch.
     
     NSDictionary *appDefaults = [NSDictionary
-                                 dictionaryWithObject:[NSArray arrayWithObjects:@"Portland", @"Oregon", @"Timbers", @"Burnside", @"Powell's", @"Willamette", nil]  forKey:@"SearchTagsKey"];
+                                 dictionaryWithObject:[NSArray arrayWithObjects:@"Portland", @"Oregon", @"Boise", @"Buckman", @"Cathedral Park", @"Goose Hollow", @"Ladd's Addition", @"Laurelhurst", @"Powell", @"Reed", @"Willamette Heights", nil]  forKey:@"SearchTagsKey"];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     
     // Set application root view controller.

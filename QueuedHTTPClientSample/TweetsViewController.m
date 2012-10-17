@@ -21,7 +21,7 @@
 
 @synthesize tags = _tags;
 @synthesize tweets = _tweets;
-
+@synthesize activity = _activity;
 
 #pragma mark - View lifecycle
 
@@ -31,16 +31,17 @@
     if ( self ) 
     {
         _tags = tags;
-        _tweets = [[NSMutableSet alloc] init];
+        _tweets = [[NSMutableArray alloc] init];
+        _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _activity.hidesWhenStopped = YES;
         
         self.title = NSLocalizedString( @"Tweets", @"" );
     }
     return self;
 }
-
-- (void)viewDidLoad
+- (void)viewDidLoad;
 {
-    [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activity];
 }
 
 - (void)viewDidAppear:(BOOL)animated;
@@ -49,24 +50,40 @@
     
     [self.navigationController setToolbarHidden:YES animated:YES];
     
+    // Loop through search tags and queue up requests.
+    
     MediaServer *server = [MediaServer sharedMediaServer];
     
-    for (NSString *tag in self.tags) 
+    for ( NSString *tag in self.tags )
     {
+        [self.activity startAnimating];
+        
         [server fetchTweetsForSearch:tag block:^(NSArray *items, NSError *error) {
             
             if ( items && error == nil )
             {
                 [self.tweets addObjectsFromArray:items];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                
+                NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:NO]];
+                [self.tweets sortUsingDescriptors:sortDescriptorsArray];
+                
+                [self.tableView reloadData];
+                [self.activity stopAnimating];
             }
         }];
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated;
+{
+    MediaServer *server = [MediaServer sharedMediaServer];
+    
+    [[server operationQueue] cancelAllOperations];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return ( interfaceOrientation == UIInterfaceOrientationPortrait );
 }
 
 
@@ -79,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.tweets allObjects] count];
+    return [self.tweets count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,8 +129,7 @@
         [cell.contentView addSubview:tweetTimeLabel];
     }
     
-    NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:NO]];
-    Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:sortDescriptorsArray] objectAtIndex:indexPath.row];
+    Tweet *tweet = (Tweet *)[self.tweets  objectAtIndex:indexPath.row];
     
     [(UILabel *)[cell.contentView viewWithTag:1] setText:tweet.screenNameString];
     
@@ -133,14 +149,7 @@
     tweetLabel.frame = newScreenNameFrame;
     
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];    
-    [dateFormatter setDoesRelativeDateFormatting:YES];
-    
-    NSString *dateString = [dateFormatter stringFromDate:tweet.createdAtDate];
-    
-    [(UILabel *)[cell.contentView viewWithTag:3] setText:dateString];
+    [(UILabel *)[cell.contentView viewWithTag:3] setText:tweet.createdAtString];
     
     return cell;
 }
@@ -152,8 +161,7 @@
 {
     // Calculate label size based on tweet length.
     
-    NSArray *sortDescriptorsArray = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"createdAtDate" ascending:NO]];
-    Tweet *tweet = (Tweet *)[[self.tweets sortedArrayUsingDescriptors:sortDescriptorsArray] objectAtIndex:indexPath.row];
+    Tweet *tweet = (Tweet *)[self.tweets objectAtIndex:indexPath.row];
 
     NSString *string = tweet.tweetTextString;
     CGSize maximumLabelSize = CGSizeMake( 300.0f, 9999.0f );
