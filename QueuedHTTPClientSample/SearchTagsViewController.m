@@ -101,6 +101,8 @@
 
 - (void)reloadTags;
 {
+    NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] arrayForKey:TagsDefaultsKey] mutableCopy]);
+    
     self.searchTags = [[[NSUserDefaults standardUserDefaults] arrayForKey:TagsDefaultsKey] mutableCopy];
     [self.tableView reloadData];
 }

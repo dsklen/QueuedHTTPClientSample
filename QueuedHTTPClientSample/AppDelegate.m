@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
 #import "SearchTagsViewController.h"
+#import "Constants.h"
 
 @implementation AppDelegate
 
@@ -25,7 +25,7 @@
     // Register default search tags for initial launch.
     
     NSDictionary *appDefaults = [NSDictionary
-                                 dictionaryWithObject:[NSArray arrayWithObjects:@"Portland", @"Oregon", @"Boise", @"Buckman", @"Cathedral Park", @"Goose Hollow", @"Ladd's Addition", @"Laurelhurst", @"Powell", @"Reed", @"Willamette Heights", nil]  forKey:@"SearchTagsKey"];
+                                 dictionaryWithObject:[NSArray arrayWithObjects:@"Portland", @"Oregon", @"Boise", @"Buckman", @"Cathedral Park", @"Goose Hollow", @"Ladd's Addition", @"Laurelhurst", @"Powell", @"Reed", @"Willamette Heights", nil]  forKey:TagsDefaultsKey];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     
     // Set application root view controller.
